@@ -1,0 +1,6 @@
+export enum Routes {
+  HOME = 'HOME',
+  SEARCH = 'SEARCH',
+  MOVIE_DETAILS = 'MOVIE_DETAILS',
+  FAVORITES = 'FAVORITES'
+}
