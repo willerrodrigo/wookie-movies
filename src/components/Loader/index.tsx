@@ -12,7 +12,12 @@ export const Loader = ({
 }: ActivityIndicatorProps) => {
   return (
     <S.Wrapper>
-      <ActivityIndicator color={color} size={size} {...rest} />
+      <ActivityIndicator
+        accessibilityHint="loading"
+        color={color}
+        size={size}
+        {...rest}
+      />
     </S.Wrapper>
   );
 };

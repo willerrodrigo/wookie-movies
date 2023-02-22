@@ -1,0 +1,4 @@
+export default {
+  API_URL: 'https://wookie.codesubmit.io',
+  API_AUTHORIZATION: 'Bearer Wookie2019'
+};
