@@ -1,10 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Favorites, Home, MovieDetails, Search } from 'screens';
 import { Routes } from 'utils';
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const ICON_NAMES = {
@@ -13,11 +15,12 @@ const ICON_NAMES = {
   [Routes.FAVORITES]: ['heart', 'heart-outline']
 };
 
-const AppStack = () => {
+const HomeTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarIcon: ({ focused, color }) => {
           const [focusedIcon, unfocussedIcon] = ICON_NAMES[route.name] || [];
 
@@ -47,16 +50,20 @@ const AppStack = () => {
         options={{ tabBarLabel: 'Search' }}
       />
       <Tab.Screen
-        name={Routes.MOVIE_DETAILS}
-        component={MovieDetails}
-        options={{ tabBarButton: () => null }}
-      />
-      <Tab.Screen
         name={Routes.FAVORITES}
         component={Favorites}
         options={{ tabBarLabel: 'Favorites' }}
       />
     </Tab.Navigator>
+  );
+};
+
+const AppStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name={Routes.HOME_TABS} component={HomeTabs} />
+      <Stack.Screen name={Routes.MOVIE_DETAILS} component={MovieDetails} />
+    </Stack.Navigator>
   );
 };
 
